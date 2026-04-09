@@ -109,15 +109,19 @@ for story_id in ids:
 
     time.sleep(1)
 # Step 3: Save to file after each story
+
+all_stories = []
+all_stories.extend(technology_category_stories)
+all_stories.extend(worldnews_category_stories)
+all_stories.extend(sports_category_stories)
+all_stories.extend(science_category_stories)
+all_stories.extend(entertainment_category_stories)
+
 all_stories = {
-        "technology": technology_category_stories,
-        "worldnews": worldnews_category_stories,
-        "sports": sports_category_stories,
-        "science": science_category_stories,
-        "entertainment": entertainment_category_stories
-    }
+        "all_stories": all_stories
+}
 os.makedirs("data", exist_ok=True)
 with open("data/trends_20240115.json", "w") as f:
     json.dump(all_stories, f, indent=4)
 
-print(f"Collected {len(technology_category_stories) + len(worldnews_category_stories) + len(sports_category_stories) + len(science_category_stories) + len(entertainment_category_stories)} stories. Saved to data/trends_20240115.json")
+print(f"Collected {len(all_stories['all_stories'])} stories. Saved to data/trends_20240115.json")
